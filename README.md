@@ -70,13 +70,20 @@ Set up an environment:
 virtualenv -p /usr/bin/python3.4 ~/VirtualEnvs/jake
 git clone https://github.com/gyKa/jake.git ~/Apps/jake
 source ~/VirtualEnvs/jake/bin/activate
-pip install -r ~/Apps/jake/requirements.txt
 ```
 
-## Settings
-
-Create `jake/.env` file. Here are available settings:
+In order to set environment variables, create `jake/.env` file.
+Here are available settings:
 
 ```
 DATABASE_DEFAULT_PASSWORD
+```
+
+Install dependencies: `pip install -r ~/Apps/jake/requirements.txt`
+
+Do some Django related work:
+
+```
+python ~/Apps/jake/manage.py migrate
+python ~/Apps/jake/manage.py createsuperuser
 ```
