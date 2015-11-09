@@ -1,7 +1,7 @@
 ## Requirements
 
 * Ubuntu 15.04 / Ubuntu 15.10
-* Apache 2 and mod_wsgi
+* Apache 2 and mod_wsgi (for production only)
 * Python 3.4
 * PostgreSQL 9.4
 * Pip
