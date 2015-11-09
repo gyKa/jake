@@ -26,7 +26,7 @@ Logout, login, and then command `perl -e exit` should output nothing.
 ### Apache
 
 ```
-sudo apt-get install -y apache2 libapache2-mod-wsgi
+sudo apt-get install -y apache2 libapache2-mod-wsgi-py3
 sudo service apache2 restart
 ```
 
@@ -95,3 +95,37 @@ Do some Django related work:
 python ~/Apps/jake/manage.py migrate
 python ~/Apps/jake/manage.py createsuperuser
 ```
+
+Create new virtual host in `/etc/apache2/sites-available/jake.conf`:
+
+```
+<VirtualHost *:80>
+    ServerName jake.karciauskas.lt
+    ServerAlias www.jake.karciauskas.lt
+
+    # Insert the full path to the wsgi.py-file here.
+    WSGIScriptAlias / /home/gytis/Apps/jake/jake/wsgi.py
+
+    # PROCESS_NAME specifies a distinct name of this process.
+    #   see: https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIDaemonProcess
+    # PATH/TO/PROJECT_ROOT is the full path to your project's root directory,
+    #   containing your project files.
+    # PATH/TO/VIRTUALENV/ROOT: If you are using a virtualenv specify the full
+    #   path to its directory.
+    #   Generally you must specify the path to Python's site-packages.
+    WSGIDaemonProcess jake python-path=/home/gytis/Apps/jake:/home/gytis/VirtualEnvs/jake/lib/python3.4/site-packages/
+
+    # PROCESS_GROUP specifies a distinct name for the process group
+    #   see: https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIProcessGroup
+    WSGIProcessGroup jake
+
+    <Directory /home/gytis/Apps/jake/jake>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+</VirtualHost>
+```
+
+Then enable site `a2ensite jake.conf` and restart Apache server
+`service apache2 reload`.
