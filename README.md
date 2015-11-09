@@ -72,3 +72,11 @@ git clone https://github.com/gyKa/jake.git ~/Apps/jake
 source ~/VirtualEnvs/jake/bin/activate
 pip install -r ~/Apps/jake/requirements.txt
 ```
+
+## Settings
+
+Create `jake/.env` file. Here are available settings:
+
+```
+DATABASE_DEFAULT_PASSWORD
+```
