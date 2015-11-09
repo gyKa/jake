@@ -1,6 +1,7 @@
 ## Requirements
 
 * Ubuntu 15.04 / Ubuntu 15.10
+* Apache 2 and mod_wsgi
 * Python 3.4
 * PostgreSQL 9.4
 * Pip
@@ -21,6 +22,13 @@ locale-gen en_US.UTF-8
 Logout, login, and then command `perl -e exit` should output nothing.
 
 ## Installation
+
+### Apache
+
+```
+sudo apt-get install -y apache2 libapache2-mod-wsgi
+sudo service apache2 restart
+```
 
 ### PostgreSQL
 
