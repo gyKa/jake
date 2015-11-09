@@ -85,6 +85,7 @@ Here are available settings:
 
 ```
 DATABASE_DEFAULT_PASSWORD
+STATIC_ROOT (e.g. /home/gytis/Apps/jake/static , for production only)
 ```
 
 Install dependencies: `pip install -r ~/Apps/jake/requirements.txt`
@@ -94,6 +95,7 @@ Do some Django related work:
 ```
 python ~/Apps/jake/manage.py migrate
 python ~/Apps/jake/manage.py createsuperuser
+python ~/Apps/jake/manage.py collectstatic (for production only)
 ```
 
 Create new virtual host in `/etc/apache2/sites-available/jake.conf`:
@@ -118,6 +120,12 @@ Create new virtual host in `/etc/apache2/sites-available/jake.conf`:
     # PROCESS_GROUP specifies a distinct name for the process group
     #   see: https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIProcessGroup
     WSGIProcessGroup jake
+
+    Alias /static/ /home/gytis/Apps/jake/static/
+
+    <Directory /home/gytis/Apps/jake/static>
+        Require all granted
+    </Directory>
 
     <Directory /home/gytis/Apps/jake/jake>
         <Files wsgi.py>
