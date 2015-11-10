@@ -83,10 +83,10 @@ source ~/VirtualEnvs/jake/bin/activate
 In order to set environment variables, create `jake/.env` file.
 Here are available settings:
 
-```
-DATABASE_DEFAULT_PASSWORD
-STATIC_ROOT (e.g. /home/gytis/Apps/jake/static , for production only)
-```
+| Name                      | Value                                              |
+|---------------------------|----------------------------------------------------|
+| DATABASE_DEFAULT_PASSWORD | ha7yAL28Zvcg                                       |
+| STATIC_ROOT               | /home/gytis/Apps/jake/static (for production only) |
 
 Install dependencies: `pip install -r ~/Apps/jake/requirements.txt`
 
